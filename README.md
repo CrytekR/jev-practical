@@ -49,6 +49,8 @@ python3 -m pytest
 
 `python3 -m jev_practical` 会跑一轮本地实验：过置信样本上的温度缩放、选择性接受、词重叠分流、期望损失、共享前缀、契约检查和级联成本。数字来自 `study.py`，不访问外部模型接口。未安装时可以用 `PYTHONPATH=src python3 -m jev_practical`；`pytest` 会通过 `pyproject.toml` 把 `src` 放进路径。
 
+`python3 examples/mammoth_multilabel.py` 打印 mammoth-1 一次请求里四道题如何共用 state 前缀。加上 `--run` 才会用 transformers 加载权重并在答案位置读字母 logits。
+
 ## 参考文献位置
 
 机制和取舍主要对照 Victor Dibia 对校准决策模型的测量（选项打分、单代号读出、温度缩放），以及围绕该接口的中文技术笔记里对共享前缀、期望分数和成本阈值的整理。准确率、ECE 和延迟都以自己的标注和自己的部署重新测量。
