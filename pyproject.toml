@@ -1,21 +1,14 @@
 [project]
 name = "jev-practical"
 version = "0.1.0"
-description = "研究 Jev 类决策模型的应用场景、方法与针对性优化"
+description = "对比通用模型与 Jev 类开源决策模型的准确率和推理性能"
 readme = "README.md"
 requires-python = ">=3.11"
 authors = [{ name = "jev-practical" }]
 
-[project.scripts]
-jev-practical = "jev_practical.study:main"
-
 [tool.pytest.ini_options]
-pythonpath = ["src"]
 testpaths = ["tests"]
 
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
-
-[tool.setuptools.packages.find]
-where = ["src"]
