@@ -1,0 +1,20 @@
+{
+  "data": "../data/support.jsonl",
+  "concurrency": 8,
+  "models": [
+    {
+      "id": "qwen",
+      "base_url": "http://127.0.0.1:8000/v1",
+      "model": "Qwen/Qwen3.5-27B",
+      "api_key": "EMPTY",
+      "methods": ["generate"]
+    },
+    {
+      "id": "mammoth",
+      "base_url": "http://127.0.0.1:8001/v1",
+      "model": "baselabs/mammoth-1",
+      "api_key": "EMPTY",
+      "methods": ["jev"]
+    }
+  ]
+}
