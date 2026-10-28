@@ -1,5 +1,6 @@
 import importlib.util
 import json
+import subprocess
 import sys
 from pathlib import Path
 
@@ -103,6 +104,25 @@ def test_rejects_unknown_method(tmp_path: Path) -> None:
     )
     with pytest.raises(ValueError, match="未知推理方法"):
         load_experiment(config)
+
+
+def test_vllm_script_uses_the_official_026_image() -> None:
+    script = Path(__file__).parents[1] / "scripts" / "run-vllm.sh"
+    result = subprocess.run(
+        ["bash", str(script), "--dry-run", "baselabs/mammoth-1", "8001"],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    command = result.stdout
+    assert "vllm/vllm-openai:v0.26.0" in command
+    assert "--enable-prefix-caching" in command
+    assert "--max-logprobs" in command and "26" in command
+    assert "--api-key" in command and "EMPTY" in command
+    assert "8001:8000" in command
+    assert "baselabs/mammoth-1" in command
+    refused = subprocess.run(["bash", str(script)], capture_output=True, text=True)
+    assert refused.returncode == 2
 
 
 def test_summary_counts_wrong_invalid_and_percentiles() -> None:
