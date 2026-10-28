@@ -1,4 +1,4 @@
-from jev_practical.study import main
+from jev_compare.run import main
 
 if __name__ == "__main__":
     main()
